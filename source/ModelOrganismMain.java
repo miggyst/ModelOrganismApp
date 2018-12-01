@@ -9,12 +9,10 @@ import javafx.scene.Scene;
 
 // Layout, node placement modues
 import javafx.scene.layout.*;
-import javafx.geometry.Insets;
 
 // Node modules
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 // On action event listener modules
 import javafx.event.ActionEvent;
@@ -24,45 +22,50 @@ import javafx.event.EventHandler;
 public class ModelOrganismMain extends Stage{
     Pane modelOrganismPane = new Pane();
 
-    Label modelOrganismQuestionLabel = new Label();
+    Label modelOrganismLabel = new Label();
 
-    Button geneticStudiesButton = new Button("Genetic Studies");
-    Button developmentalStudiesButton = new Button("Developmental Studies");
+    Label fruitFlyLabel = new Label();
+    Label zebraFishLabel = new Label();
+    Label mouseLabel = new Label();
+    Label chickenLabel = new Label();
+
+    
+    Button playButton = new Button("Find out your Model Organism!");
+    
 
 
     // Need to take a look at node placements, may need to hard code the coordinate placements
     ModelOrganismMain(){
         // Placing the nodes onto the pane in a grid(x,y)
-        modelOrganismQuestionLabel.relocate(215, 150);
-        geneticStudiesButton.relocate(120, 600);
-        developmentalStudiesButton.relocate(350, 600);
+        modelOrganismLabel.relocate(115, 150);
+        playButton.relocate(215, 300);
+
+        fruitFlyLabel.relocate(120, 500);
+        zebraFishLabel.relocate(350, 500);
+        mouseLabel.relocate(120, 700);
+        chickenLabel.relocate(350, 700);
 
         // Modifying the nodes
-        modelOrganismQuestionLabel.setText("What is the nature of your study?");
+        modelOrganismLabel.setText("Welcome to the Model Organism Application (Press the button to play)");
+        fruitFlyLabel.setText("Drosophila Melanogaster (Fruit Fly): " + GlobalUtilities.getFruitFlyCount());
+        zebraFishLabel.setText("Danjo Rerio (Zebra Fish): " + GlobalUtilities.getZebraFishCount());
+        mouseLabel.setText("Mus Musculus (Mouse): " + GlobalUtilities.getMouseCount());
+        chickenLabel.setText("Gallus Domesticus (Chicken): " + GlobalUtilities.getChickenCount());
 
         // Adding nodes to scene
-        modelOrganismPane.getChildren().addAll(modelOrganismQuestionLabel, geneticStudiesButton, developmentalStudiesButton);
+        modelOrganismPane.getChildren().addAll(modelOrganismLabel, playButton, fruitFlyLabel, zebraFishLabel, mouseLabel, chickenLabel);
         this.setScene(new Scene(modelOrganismPane, 600, 900));
         this.setResizable(false);
         this.setTitle("Model Organism");
         this.show();
     
         // Action events due to button click
-        geneticStudiesButton.setOnAction(new EventHandler<ActionEvent>(){
+        playButton.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent t){
-                Stage stage = (Stage) geneticStudiesButton.getScene().getWindow();
+                Stage stage = (Stage) playButton.getScene().getWindow();
                 stage.close();
-                new Genetic();
-            }
-        });
-
-        developmentalStudiesButton.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent t){
-                Stage stage = (Stage) developmentalStudiesButton.getScene().getWindow();
-                stage.close();
-                new Developmental();
+                new StudyType();
             }
         });
     }

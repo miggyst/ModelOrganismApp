@@ -1,7 +1,9 @@
 /*
 Class to start the program loop
-Compile:    javac -d . source/*.java
-Run:        java code.Main
+Compile:        javac -d . source/*.java
+Run:            java code.Main
+JAR-compile:    jar -cvfm ModelOrganism.jar source/Main.txt *
+JAR-run:        java -jar ModelOrganism.jar
 */
 package code;
 
